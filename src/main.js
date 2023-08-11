@@ -26,13 +26,13 @@ export class ProductManager {
     }
 
     
-    // saveToFile = async() => {
-    //     try {
-    //         await fs.writeFile(this.path, JSON.stringify(this.products,null,2));
-    //     } catch (error) {
-    //         console.log('Error al guardar en el archivo:', error);
-    //     }
-    // }
+    saveToFile = async() => {
+        try {
+            await fs.writeFile(this.path, JSON.stringify(this.products,null,2));
+        } catch (error) {
+            console.log('Error al guardar en el archivo:', error);
+        }
+    }
 
     recoverProducts = async() => {       
         try {
@@ -129,12 +129,6 @@ app.get('/products', async (req, res) => {
 app.get('/products/:id', async (req, res) => {
     
     res.send(await manager.getProductById(parseInt(req.params.id)))
-    // const allproducts = await readproducts;
-    // const prod = allproducts.find(prod => prod.id === parseInt(req.params.id))
-    // if (prod)
-    //     res.send(prod)
-    // else
-    //     res.send("Producto no existente")
 })
 
 app.post('/products', async (req, res) => {
